@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//OnlineMarket/src/controller/Controller.java=EUC-KR
+encoding//OnlineMarket/src/dao/BoardDaoImpl.java=EUC-KR
+encoding//OnlineMarket/src/service/BoardService.java=EUC-KR
+encoding//OnlineMarket/src/service/BoardServiceImpl.java=EUC-KR
+encoding//OnlineMarket/src/service/CartServiceImpl.java=EUC-KR
+encoding//OnlineMarket/src/service/CategoryServiceImpl.java=EUC-KR
+encoding//OnlineMarket/src/service/PayServiceImpl.java=EUC-KR
+encoding//OnlineMarket/src/service/UserService.java=UTF-8
+encoding//OnlineMarket/src/service/UserServiceImpl.java=UTF-8

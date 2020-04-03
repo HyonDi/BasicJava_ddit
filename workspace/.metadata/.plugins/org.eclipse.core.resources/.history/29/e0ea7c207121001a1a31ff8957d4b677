@@ -1,0 +1,252 @@
+package Z_exam;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
+public class Score_ArrayList {
+
+	public static void main(String[] args) {
+	/*	String[] students = {"정대석", "박종민", "이누리", "김지선", "강현지"};
+		String[] subjects = {"Java", "Oracle", "HTML", "JQUERY", "JSP"};
+		double[][] scores1 = new double[students.length][subjects.length + 3];//왜 +3? 점수말고도 총점, 평균, 석차도 넣어야해서.
+		
+		//점수를 입력한다.
+		
+		for(int i = 0; i < scores1.length; i++){
+			scores1[i][0] = 1; //0번인덱스에 석차. 1번인덱스부터 점수.
+			for(int j = 0 ; j < subjects.length; j++){
+				scores1[i][j+1] = (int)(Math.random() * 51) +50;
+			}
+		}
+		
+		//총점과 평균을 구한다.
+		for(int i = 0; i < scores1.length; i++){
+			for(int j = 0; j < subjects.length; j ++){
+				scores1[i][scores1[i].length - 2]
+						+= scores1[i][j+1]; //총점
+			}
+			scores1[i][scores1[i].length -1]
+					= (int)(scores1[i][scores1[i].length - 2]
+							/subjects.length * 100 + 0.5) 
+							/100.0; //평균
+		}
+			
+		//석차를 구한다.
+		for(int i = 0; i < scores1.length; i++){
+			for(int j = 0; j < scores1.length; j ++){
+				if(scores1[i][scores1[i].length - 1] < scores1[j][scores1[j].length - 1]){
+					scores1[i][0]++;
+				}
+			}
+		}
+		
+		
+			//정렬한다.
+			for(int i = 0; i <scores1.length - 1; i++){
+				for (int j = i + 1; j < scores1.length; j ++){
+					if(scores1[i][0] > scores1[j][0]){
+						double[] temp11 = scores1[i];
+						scores1[i] = scores1[j];
+						scores1[j] = temp11;
+						
+						String tempName = students[i];
+						students[i] = students[j];
+						students[j] = tempName;
+					}
+				}
+			}
+			
+			
+			//출력한다.
+			System.out.print("석차\t이름");
+			for (int i = 0; i < subjects.length; i ++){
+				System.out.print("\t" + subjects[i]);
+				
+				
+			}
+			System.out.println("\t총점\t평균");
+			
+			for(int i = 0; i < scores1.length; i++){
+				System.out.print((int)scores1[i][0] + "\t" + students[i]);
+				for(int j = 1; j < scores1[i].length; j ++){
+					System.out.print("\t" + scores1[i][j]);
+				
+				}
+				System.out.println();
+			}
+			
+			System.out.print("과목별 평균");
+			for(int i = 1; i <= subjects.length; i ++){
+				double sum = 0;
+				for(int j = 0; j < scores1.length; j++){
+					sum += scores1[j][i];
+				}
+				double avg = (int)(sum / scores1.length * 100 +0.5)
+						/100.0;
+				System.out.print("\t" + avg);
+			}
+			//어떻게 자바칸에맞춰서나오지........ 총점평균이랑 평균평균은??
+			//ctrl + shift+ b  => 커서 둔 곳 브레이크포인트  // f6 : 한줄씩 실행함
+*/		
+		//-----------------------------------------------------------------------------------------------------------------
+		// 위랑 아래랑 합쳐서 해보자.
+		
+		/*
+		 	
+		ArrayList<HashMap<String,Object>> arrl = new ArrayList<>();
+		HashMap<String, Object> map1 = new HashMap<>();
+		map1.put("LPROD_ID", "1");
+		map1.put("LPROD_GU", "P101");
+		map1.put("LPROD_NM", "컴퓨터제품");
+		
+		HashMap<String, Object> map2 = new HashMap<>();
+		map2.put("LPROD_ID", "2");
+		map2.put("LPROD_GU", "P102");
+		map2.put("LPROD_NM", "전자제품");
+		
+		HashMap<String, Object> map3 = new HashMap<>();
+		map3.put("LPROD_ID", "3");
+		map3.put("LPROD_GU", "P201");
+		map3.put("LPROD_NM", "여성캐주얼");
+		
+		HashMap<String, Object> map4 = new HashMap<>();
+		map4.put("LPROD_ID", "4");
+		map4.put("LPROD_GU", "P202");
+		map4.put("LPROD_NM", "남성캐주얼");
+		
+		HashMap<String, Object> map5 = new HashMap<>();
+		map5.put("LPROD_ID", "5");
+		map5.put("LPROD_GU", "P301");
+		map5.put("LPROD_NM", "피혁잡화");
+		
+		HashMap<String, Object> map6 = new HashMap<>();
+		map6.put("LPROD_ID", "6");
+		map6.put("LPROD_GU", "P302");
+		map6.put("LPROD_NM", "화장품");
+		
+		HashMap<String, Object> map7 = new HashMap<>();
+		map7.put("LPROD_ID", "7");
+		map7.put("LPROD_GU", "P401");
+		map7.put("LPROD_NM", "음반/CD");
+		
+		HashMap<String, Object> map8 = new HashMap<>();
+		map8.put("LPROD_ID", "8");
+		map8.put("LPROD_GU", "P402");
+		map8.put("LPROD_NM", "도서");
+		
+		HashMap<String, Object> map9 = new HashMap<>();
+		map9.put("LPROD_ID", "9");
+		map9.put("LPROD_GU", "P403");
+		map9.put("LPROD_NM", "문구류");
+		
+		
+		arrl.add(map1);
+		arrl.add(map2);
+		arrl.add(map3);
+		arrl.add(map4);
+		arrl.add(map5);
+		arrl.add(map6);
+		arrl.add(map7);
+		arrl.add(map8);
+		arrl.add(map9);
+		
+
+		for(int i =0; i < arrl.size(); i++){
+		System.out.println(arrl.get(i));
+	}
+
+		System.out.println("-------------------------------------------------------------------------");
+		
+		for(String key : arrl.get(0).keySet()){
+			System.out.print(key + "\t");
+		}
+		System.out.println();
+		for(int i =0 ;i < arrl.size(); i++){
+			HashMap<String,Object> hashMap = arrl.get(i);
+			Set<String> keyset = hashMap.keySet();
+			for(String key : keyset){
+				System.out.print(hashMap.get(key) + "\t\t");
+			}
+			System.out.println();
+		}
+		
+		 */
+
+		ArrayList<ArrayList<Object>> score = new ArrayList<>();
+		
+		ArrayList<Object> name  = new ArrayList<>();
+		name.add("김지선");
+		name.add("이누리");
+		name.add("정대석");
+		name.add("박종민");
+		name.add("정재영");
+		name.add("강현철");
+		name.add("주향한");
+		name.add("윤창훈");
+		name.add("연은주");
+		name.add("김령환");
+		name.add("구한나");
+		name.add("백종빈");
+		name.add("이병훈");
+		name.add("강현지");
+		name.add("김경운");
+		name.add("이지형");
+		name.add("이예림");
+		name.add("이승재");
+		name.add("민태홍");
+		name.add("정보람");
+		name.add("박진영");
+		
+		score.add(name);
+		
+		//javaScore
+		ArrayList<Object> javaScore  = new ArrayList<>();				
+		for(int i = 0 ; i < name.size(); i++){
+				javaScore.add((int)(Math.random() * 51) +50);
+				System.out.println(javaScore.get(i));				
+			}
+		//oracleScore
+		ArrayList<Object> oracleScore  = new ArrayList<>();				
+		for(int i = 0 ; i < name.size(); i++){
+			oracleScore.add((int)(Math.random() * 51) +50);
+				System.out.println(oracleScore.get(i));				
+			}
+		
+		//htmlScore
+		ArrayList<Object> htmlScore  = new ArrayList<>();
+		for(int i = 0 ; i < name.size(); i++){
+			htmlScore.add((int)(Math.random() * 51) +50);
+			System.out.println(htmlScore.get(i));				
+		}
+		//jqueryScore
+		ArrayList<Object> jqueryScore  = new ArrayList<>();
+		for(int i = 0 ; i < name.size(); i++){
+			jqueryScore.add((int)(Math.random() * 51) +50);
+			System.out.print(jqueryScore.get(i)+"/");				
+		}
+		//jspScore
+		ArrayList<Object> jspScore  = new ArrayList<>();
+		for(int i = 0 ; i < name.size(); i++){
+			jspScore.add((int)(Math.random() * 51) +50);
+			System.out.print(jspScore.get(i) + "/");				
+		}
+		
+		//총점, 평균
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board"><!-- 패키지같은 것. -->
+
+	<!-- mapper 파일에서 sql작성시 주의점 : sql 구문 끝에 세미콜론(;)을 붙이지 않는다. -->
+	<!-- board_test테이블의 모든 데이터 조회 -->
+
+  <select id="selectBoardTest" resultType="map">
+    SELECT *
+    FROM board_test
+  </select>
+  <!-- 리저트타입에 map 을 적어서 키와 밸류로 값을 받는다. -->
+  
+</mapper>

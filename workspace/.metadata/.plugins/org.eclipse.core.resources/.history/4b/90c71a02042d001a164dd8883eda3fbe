@@ -1,0 +1,321 @@
+package controller;
+
+import java.util.Scanner;
+
+import service.BoardService;
+import service.BoardServiceImpl;
+import service.CartService;
+import service.CartServiceImpl;
+import service.CategoryService;
+import service.CategoryServiceImpl;
+import service.PayService;
+import service.PayServiceImpl;
+import service.UserService;
+import service.UserServiceImpl;
+import data.Session;
+
+public class Controller {
+
+	UserService userService = UserServiceImpl.getInstance();
+	CartService cartService = CartServiceImpl.getInstance();
+	CategoryService categoryService = CategoryServiceImpl.getInstance();
+	PayService payService = PayServiceImpl.getInstance();
+	BoardService boardService = BoardServiceImpl.getInstance();
+	
+	public static void main(String[] args) {
+
+		new Controller().begin();
+
+	}
+
+	private void begin() {
+		Scanner s = new Scanner(System.in);
+
+		int menu;
+
+		do {
+			if(Session.loginUser == null)
+			{
+				System.out.println("---------- MENU ----------");
+				System.out.println("1. 회원가입");
+				System.out.println("2. 로그인 ");
+				System.out.println("3. 쇼핑하기");
+				System.out.println("4. 상품 검색");
+				System.out.println("-------------------------");
+				System.out.println("선택해주세요 >>");
+			}
+			else
+			{
+				loginMain();
+			}
+			
+			menu = Integer.parseInt(s.nextLine());
+			System.out.println(); //공백 두기 위해서 등록 br.20191231 add
+			
+			switch (menu) {
+			case 1:
+				userService.join();
+				break;
+				
+			case 2:
+				userService.login();
+				break;
+				
+			case 3:
+				categoryService.printCategoryList();
+				break;
+				
+			case 4:
+				categoryService.searchCategoryWithKeyword("");
+				break;
+				
+			default :
+				break;
+
+			}
+		} while(menu != 0); 
+		
+		if(menu == 0)		//log-out -> begin()
+			begin();
+	}	
+	
+	
+	private void loginMain(){ //br 20191226 add
+		Scanner s = new Scanner(System.in);
+		
+		 int menu;
+		 
+		 do{
+			System.out.println("---------- MENU ----------");
+			System.out.println("1. My Page");
+			System.out.println("2. 쇼핑하기");
+			System.out.println("3. 상품 검색");
+			System.out.println("4. 전체 후기 보기"); //현지추가
+			System.out.println("5. 판매할 상품 등록하기");
+			System.out.println("0. 로그아웃");
+			
+
+			System.out.println("-------------------------");
+			System.out.println("선택해주세요 >>");
+						 
+			 menu = Integer.parseInt(s.nextLine());
+			 System.out.println(); //공백 두기 위해서 등록 br.20191231 add
+			 
+			 switch (menu) {
+				case 1:
+					userService.printMyPage();
+					MyPage();
+					break;
+					
+				case 2:
+					categoryService.printCategoryList();
+					shoppingMenu();
+					break;
+					
+				case 3:
+					categoryService.searchCategoryWithKeyword("");
+					break;
+					
+
+				case 4://후기 전체출력
+//					boardService.selectBoardList();
+					boardService.boardListAll();
+					break;
+
+				case 5:
+					categoryService.addCategory();
+					break;
+					
+				case 0:
+					System.out.println("Log-Out : Have a nice day!");
+					Session.loginUser = null;
+					break;
+
+				default :
+					break;
+
+				}
+
+			// if( menu == 3)
+			// {
+			// userService.printMyPage(); //br 20191226 add
+			// loginMain();
+			// break;
+			// }
+			// else if( menu == 0)
+			// {
+			// System.out.println("Have a nice day!");
+			// begin();
+			// break;
+			// }
+
+		} while (menu != 0);
+
+		if (menu == 0) // log-out -> begin()
+			begin();
+	}
+	
+	private void shoppingMenu(){ //null 1231 add
+		Scanner s = new Scanner(System.in);
+		
+		 int menu;
+		 
+		 do{
+			System.out.println("---------- MENU ----------");
+			System.out.println("1. 상품 검색");
+			System.out.println("2. 장바구니 담기"); //쇼핑하기
+			System.out.println("3. 물건 구매"); //null 12.28 //쇼핑하기
+			System.out.println("4. 판매할 상품 등록하기");
+			System.out.println("0. 이전화면으로");
+			System.out.println("------------------------------");
+			System.out.println("선택해주세요 >>");
+						 
+			 menu = Integer.parseInt(s.nextLine());
+			 System.out.println(); //공백 두기 위해서 등록 br.20191231 add
+			 
+			 switch (menu) {
+				case 1:
+					categoryService.searchCategoryWithKeyword("");
+					break;
+					
+				case 2:
+					cartService.addToCart();
+					break;
+					
+				case 3:
+					payService.buying();
+					break;
+					
+				case 4:
+					categoryService.addCategory();
+					break;
+					
+				case 0:
+					break;
+
+				default :
+					break;
+
+				}
+
+		} while (menu != 0);
+
+		if (menu == 0) // log-out -> begin()
+			loginMain();
+	}
+	
+	private void MyPage(){ //br 20191226 add
+		Scanner s = new Scanner(System.in);
+		
+		 int menu;
+		 
+		 do{
+			System.out.println("---------- MENU ----------");
+			System.out.println("1. 장바구니 보기"); //My Page
+			System.out.println("2. 구매 내역 / 후기"); //null 12.28 ////My Page
+			System.out.println("3. 내가 작성한 후기보기"); //현지추가 //My Page
+			System.out.println("0. 이전 화면");
+			System.out.println("-------------------------");
+			System.out.println("선택해주세요 >>");
+						 
+			 menu = Integer.parseInt(s.nextLine());
+			 System.out.println(); //공백 두기 위해서 등록 br.20191231 add
+			 
+			 switch (menu) {
+				case 1:
+					cartService.printCartList();
+					break;
+			
+				case 2:
+					PayList();
+					break;
+					
+				case 3://내가 쓴 후기
+					boardService.selectMyBoardAndPrint();
+					break;
+					
+				case 0:
+					break;
+
+				default :
+					break;
+
+				}
+
+			// if( menu == 3)
+			// {
+			// userService.printMyPage(); //br 20191226 add
+			// loginMain();
+			// break;
+			// }
+			// else if( menu == 0)
+			// {
+			// System.out.println("Have a nice day!");
+			// begin();
+			// break;
+			// }
+
+		} while (menu != 0);
+
+		if (menu == 0) // log-out -> begin()
+			loginMain();
+	}
+	
+	
+	private void PayList(){ //br 20191226 add
+		Scanner s = new Scanner(System.in);
+		
+		 int menu;
+		 
+		 do{
+			System.out.println("---------- MENU ----------");
+			System.out.println("1. 구매 내역 보기");
+			System.out.println("2. 후기쓰기");
+			System.out.println("0. 이전 화면");
+			System.out.println("-------------------------");
+			System.out.println("선택해주세요 >>");
+						 
+			 menu = Integer.parseInt(s.nextLine());
+			 System.out.println(); //공백 두기 위해서 등록 br.20191231 add
+			 
+			 switch (menu) {
+				case 1:
+					payService.payList();
+					break;
+					
+				case 2:
+					boardService.write();
+					
+					break;
+
+				default :
+					break;
+
+				}
+
+			// if( menu == 3)
+			// {
+			// userService.printMyPage(); //br 20191226 add
+			// loginMain();
+			// break;
+			// }
+			// else if( menu == 0)
+			// {
+			// System.out.println("Have a nice day!");
+			// begin();
+			// break;
+			// }
+
+		} while (menu != 0);
+
+		if (menu == 0) // log-out -> begin()
+			MyPage();
+	}
+	
+	
+	
+	
+	
+	
+	
+}
